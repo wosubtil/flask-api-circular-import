@@ -25,6 +25,14 @@ class UserModel(db.Model):
         db.session.commit()
         return self
 
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+        # if EmailModel.get_total_by_user == 0:
+        #     db.session.delete(self)
+        #     db.session.commit()
+        # raise Exception
+
     
 class UserSchema(Schema):
     id = fields.Int(dump_only=True)
