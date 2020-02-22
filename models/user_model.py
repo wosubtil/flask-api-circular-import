@@ -1,7 +1,7 @@
 from . import db
 from marshmallow import fields, Schema
 
-# from .email_model import EmailModel
+# 
 
 class UserModel(db.Model):
 
@@ -26,12 +26,12 @@ class UserModel(db.Model):
         return self
 
     def delete(self):
-        db.session.delete(self)
-        db.session.commit()
-        # if EmailModel.get_total_by_user == 0:
-        #     db.session.delete(self)
-        #     db.session.commit()
-        # raise Exception
+        # Fix circular import
+        from .email_model import EmailModel
+        if EmailModel.get_total_by_user() == 0:
+            db.session.delete(self)
+            db.session.commit()
+        raise Exception
 
     
 class UserSchema(Schema):
