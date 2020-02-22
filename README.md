@@ -8,5 +8,7 @@ pip install -r requirements.txt
 
 ## Content .env
 
+```sh
 FLASK_ENV=development
 DATABASE_URL=postgresql://postgres:password@127.0.0.1/db-name
+```
